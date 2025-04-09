@@ -4,6 +4,7 @@
  */
 
 import type { IModuleConf } from '@wangeditor-next/editor';
+import './local';
 
 import { ScaleParagraphToHtmlConf } from './elem-to-html';
 import { ScaleParagraphMenuConf } from './menu/index';
