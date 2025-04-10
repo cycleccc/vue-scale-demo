@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import BasicEditor from './components/BasicEditor.vue';
 
 export default {

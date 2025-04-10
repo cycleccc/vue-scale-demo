@@ -90,7 +90,7 @@ class ScaleParagraphMenu implements ISelectMenu {
         return !!DomEditor.getSelectedNodeByType(editor, 'ScaleParagraph');
     }
 
-    isDisabled(editor: IDomEditor): boolean {
+    isDisabled(_editor: IDomEditor): boolean {
         return false;
     }
 
@@ -98,12 +98,12 @@ class ScaleParagraphMenu implements ISelectMenu {
         if (value === '1') {
             SlateTransforms.setNodes(editor, {
                 type: 'paragraph',
-            });
+            } as Partial<SlateElement>);
         } else {
             SlateTransforms.setNodes(editor, {
                 type: 'ScaleParagraph',
                 scaleX: value,
-            });
+            } as Partial<SlateElement>);
         }
     }
 }

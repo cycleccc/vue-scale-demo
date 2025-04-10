@@ -17,15 +17,9 @@ import { type ScaleParagraphElement } from './custom-types';
 function renderScaleParagraph(
     elemNode: SlateElement,
     children: VNode[] | null,
-    editor: IDomEditor,
+    _editor: IDomEditor,
 ): VNode {
     const { scaleX } = elemNode as ScaleParagraphElement;
-    // 判断 disabled
-    let disabled = false;
-
-    if (editor.isDisabled()) {
-        disabled = true;
-    }
 
     const vnode = h('div', [
         h(

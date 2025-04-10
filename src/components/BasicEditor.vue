@@ -19,14 +19,15 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import '@wangeditor-next/editor/dist/css/style.css';
 import {onBeforeUnmount, ref, shallowRef, onMounted} from 'vue';
 import {Editor, Toolbar} from '@wangeditor-next/editor-for-vue';
 import ScaleParagraph from './ScaleParagraph';
 import {Boot} from '@wangeditor-next/editor';
-Boot.registerModule(ScaleParagraph);
+import type { IDomEditor, IEditorConfig } from '@wangeditor-next/editor';
 
+Boot.registerModule(ScaleParagraph);
 
 export default {
     components: {Editor, Toolbar},
@@ -50,7 +51,7 @@ export default {
                 keys: ['ScaleParagraph'],
             },
         };
-        const editorConfig = {placeholder: '请输入内容...'};
+        const editorConfig: Partial<IEditorConfig> = { placeholder: '请输入内容...' };
 
         // 组件销毁时，也及时销毁编辑器，重要！
         onBeforeUnmount(() => {
@@ -61,26 +62,26 @@ export default {
         });
 
         // 编辑器回调函数
-        const handleCreated = (editor) => {
+        const handleCreated = (editor: IDomEditor) => {
             console.log('created', editor);
             editorRef.value = editor; // 记录 editor 实例，重要！
         };
-        const handleChange = (editor) => {
+        const handleChange = (editor: IDomEditor) => {
             console.log('change:', editor.getHtml());
         };
-        const handleDestroyed = (editor) => {
+        const handleDestroyed = (editor: IDomEditor) => {
             console.log('destroyed', editor);
         };
-        const handleFocus = (editor) => {
+        const handleFocus = (editor: IDomEditor) => {
             console.log('focus', editor);
         };
-        const handleBlur = (editor) => {
+        const handleBlur = (editor: IDomEditor) => {
             console.log('blur', editor);
         };
-        const customAlert = (info, type) => {
+        const customAlert = (info: string, type: string) => {
             alert(`【自定义提示】${ type } - ${ info }`);
         };
-        const customPaste = (editor, event, callback) => {
+        const customPaste = (editor: IDomEditor, event: ClipboardEvent, callback: (result: boolean) => void) => {
             console.log('ClipboardEvent 粘贴事件对象', event);
 
             // 自定义插入内容
